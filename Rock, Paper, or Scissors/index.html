@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Rock, Paper, or Scissors</title>
+		<style>
+			.container{
+				width:500px;
+				height: auto;
+				border:1px solid black;
+				margin:30px auto;
+			}
+			
+			h1{
+				text-align:Center;
+				font-family:Arial;
+				margin-bottom:20px;
+			}
+			
+			#txtUserInput{
+				width: 400px;
+				padding:10px;
+				margin-left:35px;
+				font-size:1.5em;	
+				font-family:Arial;
+			}
+			
+			#btnSubmit{
+				margin-top:10px;
+			    width:425px;
+				padding:10px;
+				margin-left:35px;
+				font-size:1.5em;	
+				font-family:Arial;
+			}
+			
+			#result{
+				width:480px;
+				border:1px solid black;
+				height:auto;
+				overflow:auto;
+				margin:40px auto 20px;
+				text-align:Center;
+			}
+			
+			#resultWin{
+				font-family:Arial;
+				font-size: 2em;
+			}
+			
+			table{
+				width: 480px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Welcome to Rock, Paper or Scissors Game</h1>
+			<input type="text" id="txtUserInput" placeholder="Enter User Input" />
+			<input type="button" id="btnSubmit" onclick="getResult();" value="Submit" />
+			
+			<div id="result">
+			
+				<table border="1">
+					<tr>
+						<th>User Choose</th>
+						<th>System Choose</th>
+					<tr>
+					<tr>
+						<td id="userValue"></td>
+						<td id="ComputerInput"></td>
+					</tr>
+					<tr>
+						<td colspan="2" id="resultWin"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+	           const compareValue = (userInputs,systemInput) => {
+					 if(userInputs.toLowerCase()===systemInput.toLowerCase()){
+							return "The result is a tie!";
+					}
+					if(userInputs.toLowerCase()==="rock"){
+						if(systemInput.toLowerCase()==="scissors"){
+							return "rock wins";
+						}
+						else{
+							return "paper wins";
+						}
+					}
+					if(userInputs.toLowerCase()==="paper"){
+						if(systemInput.toLowerCase()==="rock"){
+							return "paper wins";
+						}
+						else{
+							return "scissors wins";
+						}
+					}
+					if(userInputs.toLowerCase()==="scissors"){
+						if(systemInput.toLowerCase()==="rock"){
+							return "rock wins";
+						}
+						else{
+							return "scissors wins";
+						}
+					}
+			   }
+	
+	
+		
+		       const getResult = function(){
+		        let userInput = document.getElementById('txtUserInput').value;
+				let result = "";
+				
+				if(userInput===""){
+					alert('Insert Rock or Paper or Scissors in the Text Box.');
+					document.getElementById('txtUserInput').focus();
+					return;
+				}
+				
+				switch(userInput)
+				{
+					case 'ROCK' : 
+					case 'Rock' : 
+					case 'rock' :
+					case 'PAPER': 
+					case  'Paper':
+					case  'paper' :
+					case 'SCISSORS': 
+					case  'Scissors':
+					case  'scissors' :
+					
+					   let value = Math.floor(Math.random()*3);
+					   let systemChoice = "";
+					    if (value === 0){
+							systemChoice = "rock";
+						}else if(value ===1){
+							systemChoice = "paper";
+						}
+						else{
+							systemChoice = "scissors";
+						} 
+						
+					   result = compareValue(userInput,systemChoice);
+					   let userValue = document.getElementById('userValue'); 
+					   let ComputerInput = document.getElementById('ComputerInput'); 
+					   let ulElement = document.getElementById('resultWin');       
+                       ulElement.innerText = result.toUpperCase();
+					   userValue.innerText = userInput.toUpperCase();
+					   ComputerInput.innerText = systemChoice.toUpperCase();
+					    
+					break;
+					default:
+						alert('Insert Rock or Paper or Scissors in the Text Box.');
+					    document.getElementById('txtUserInput').value = "";
+						document.getElementById('txtUserInput').focus();
+					    return;
+						break;
+				}
+		}
+		
+	</script>
+</html>
